@@ -58,12 +58,14 @@ def index(request):
 def post_detail(request, post_id):
     """Render of the page with the particular post."""
     if post_id not in posts_dict:
-        raise Http404(f'Страницы не существует.'
-                      f'Этот пост еще только в планах.')
+        raise Http404(
+            'Страницы не существует. '
+            'Этот пост еще только в планах.'
+        )
     return render(request,
-              'blog/detail.html',
-              context={'post': posts_dict[post_id]}
-              )
+                  'blog/detail.html',
+                  context={'post': posts_dict[post_id]}
+                  )
 
 
 def category_posts(request, category_slug):
