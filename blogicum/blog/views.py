@@ -48,7 +48,7 @@ posts_dict = {post_i: posts[post_i] for post_i in range(len(posts))}
 
 
 def index(request):
-    """Render of the main page"""
+    """Render of the main page."""
     return render(request,
                   'blog/index.html',
                   context={'posts': reversed(posts_dict.values())}
@@ -56,18 +56,18 @@ def index(request):
 
 
 def post_detail(request, post_id):
-    """Render of the page with the particular post"""
+    """Render of the page with the particular post."""
     if post_id not in posts_dict:
-        raise Http404('Этот пост еще только в планах')
-    else:
-        return render(request,
-                      'blog/detail.html',
-                      context={'post': posts_dict[post_id]}
-                      )
+        raise Http404(f'Страницы не существует.'
+                      f'Этот пост еще только в планах.')
+    return render(request,
+              'blog/detail.html',
+              context={'post': posts_dict[post_id]}
+              )
 
 
 def category_posts(request, category_slug):
-    """Render of the page with posts filtered by category"""
+    """Render of the page with posts filtered by category."""
     return render(request,
                   'blog/category.html',
                   context={'category_slug': category_slug}

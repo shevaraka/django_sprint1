@@ -10,17 +10,15 @@
       Категория: <a href="{% url 'blog:category_posts' post.category %}">{{ post.category }}</a>
     </li>
   </ul>
-  <p>
-    {% if view_name == 'blog:index' %}
-      {{ post.text|truncatewords:10 }}
-    {% else %}
-      {{ post.text|linebreaksbr }}
-    {% endif %}
-  </p>
+
   {% if view_name == 'blog:index' %}
+    <p>
+      {{ post.text|truncatewords:10 }}
+    </p>
     <a href="{% url 'blog:post_detail' post.id %}">Читать полный текст</a>
-    {% if not forloop.last %}
-      <hr>
-    {% endif %}
+  {% else %}
+    <p>
+      {{ post.text|linebreaksbr }}
+    </p>
   {% endif %}
 {% endwith %}
